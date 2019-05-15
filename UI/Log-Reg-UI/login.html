@@ -28,11 +28,28 @@
 <!--===============================================================================================-->
 </head>
 <body>
+<?php
+session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tawa_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully";
+?>
+
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form"action="Home.html">
 					<span class="login100-form-logo">
 						 <i source="logo.jpg"></i>
 					</span>
@@ -59,7 +76,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn"name="login">
 							Login
 						</button>
 					</div>
@@ -74,6 +91,28 @@
 							go to sign-up page
 						</a>
 					</div>
+					<?php
+$sql = "SELECT Username,Password FROM user ";
+$result = $conn->query($sql);
+     
+   while($row=mysqli_fetch_assoc($result)) {
+        $username = $row['Username'];
+		$password = $row['Password'];
+      if(($username == "tawa" )&&($password =='P@$$w0rd')){
+        echo "الحمدلله";
+     
+      }
+	  else
+	  {
+		  echo"ياربيييي";
+	  }
+   }
+    
+	  
+
+
+?>
+					
 				</form>
 			</div>
 		</div>
