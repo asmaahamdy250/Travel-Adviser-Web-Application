@@ -1,0 +1,112 @@
+<html >
+<head>
+<link rel="stylesheet" type="text/css" href="Booking style.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<title> Reserved Trips </title>
+<body for id="white" topmargin="60%"> 
+
+<form >
+<center>
+		   
+   <table  for id="white"  cellspacing="30%" cellpadding="20%" width="40%">
+   
+     <tr>
+         <td colspan="2">
+	       <center><p>Your Reserved Trips</p></center>	       
+	     </td>	
+      </tr>
+	  
+      <tr>
+         <td>
+
+		  <label class="style">Number of seats</label>
+	     </td>
+         <td>
+           <label class="style"> 4 </label>
+         </td>		 
+      </tr>
+	  
+	  <tr>
+         <td>
+           <label class="style">Service Level</label>
+	     </td>
+         <td >
+		 <label class="style">Economy</label>
+         </td>		 
+      </tr>
+	  
+	  <tr>
+         <td>
+           <label class="style">Payment Method</label>
+	     </td>
+         <td>
+	      <label class="style">Debit Card</label>     
+		</td>		 
+       </select>
+	  </tr>
+	  
+	  <tr>
+         <td>
+           <label class="style">Card Number </label>
+	     </td>
+		 <td>
+		 <label class="style">123456</label>
+		 </tr>
+	  <tr>
+         <td>
+           <label class="style">Flight Type</label>
+	     </td>
+         <td>
+           <label class="style">One Way</label>
+
+         </td>		 
+      </tr>
+	  
+	  <tr>
+         <td>
+           <label class="style">Airline</label>
+	     </td>
+		 <td>
+		   <label class="style">Fly Emirates</label>	
+		 </td>
+         	 
+      </tr>
+	  
+	 
+	  
+	  <tr>
+		<td colspan="2"> <center>     
+			<input  class="btn btn-danger" type="button" value="Cancel The Trip" onclick="window.location.href='Thanks for booking.html'"></input>
+			<input class="btn btn-warning" type="button" value="Home Page" onclick="window.location.href='Home Page/index.html'" />
+		</td>
+	
+	  </tr>
+	  </table>
+</center>
+</form>
+
+
+
+</center>
+	<script>
+	function myFunction()
+	{
+	  var x = document.getElementById("payment").value;
+	  if(x == "Cash")
+	  {
+	  document.getElementById("Card").disabled=true;
+	  }
+	  else 
+	  {
+	  	  document.getElementById("Card").disabled=false;
+	  }
+	}
+	</script>
+  
+
+
+
+</body>
+</html>
