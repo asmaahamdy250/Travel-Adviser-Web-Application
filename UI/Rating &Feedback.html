@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
-<title>Contact Us</title>
+<title>FeedBack</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <style>
 body
@@ -96,6 +96,27 @@ font-family:
 </style>
 </head>
 <body>
+<?php>
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tawa_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password,$dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully";
+if (isset($_POST['submit']))
+{
+$sql = "INSERT INTO feedback (comment)values($_POST['feedback'])";
+$result = $conn->query($sql);
+}
+
+?>
 <div>
 <table align="center">
 <tr>
@@ -115,8 +136,8 @@ font-family:
 <span >☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 </div>
 
-<textarea cols="60" rows="10" > Message </textarea>
-<center> <button type="button" class="btn btn-lg btn-block btn-danger" onclick="window.location.href='contactusfollow.html'"> Submit</button> </center>
+<textarea cols="60" rows="10" name="feebback"> Message </textarea>
+<center> <button type="button" class="btn btn-lg btn-block btn-danger" onclick="window.location.href='contactusfollow.html'"name="submit"> Submit</button> </center>
 </th>
 <th >
 <center class="mytable1" >We'd &#9829; to help you</center>
