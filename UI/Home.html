@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="HomeStyle.css">
+
+</head>
+<body>
+
+<div class="topnav">
+    <a id="myLinks" href="#login">Login</a>
+    <a id="myLinks" href="#sign in">Sign in</a>
+	  <a href="#home" id="myLinks">Home</a>
+	  
+	  <div id="dropdown">
+	   <a href="# Flights">Reserved Flights</a>
+	   </br>
+       <a href="#logout">Logout</a>
+	</div>
+	  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+             <i class="fa fa-bars"></i>
+  </a>
+</div>	
+<div class=section">
+<center><h1>Welcome to TAWA</h1></center>
+</div>
+
+
+<div align=right id="btnContainer">
+  <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button> 
+  </br>
+  <button class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</button>
+</div>
+<br>
+<div id="white">
+<div class="row">
+  <div class="column" >
+<img src="1474536553-5007-dubai-47.jpg" alt="Country" height="200" width="200">
+    <p>Where to go:</p>
+	<p>Restaurants:</p>
+	<p>Airlines:</p>
+  </div>
+  <div class="column" >
+<img src="de9d7551-20b8-380c-b125-f3dbd0808c86.jfif" alt="Country" height="200" width="200">
+    <p>Where to go:</p
+	<p>Restaurants:</p>
+	<p>Airlines:</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" >
+<img src="1515044784_maldive-island-32693-2560x1600.jpg" alt="Country" height="200" width="200">
+    <p>Where to go:</p>
+	<p>Restaurants:</p>
+	<p>Airlines:</p> 
+	</div>
+  <div class="column" >
+<img src="Laamu_Water_Villa_with_Pool_5962-ORIGINAL.jpg" alt="Country" height="200" width="200">
+ <p>Where to go:</p>
+	<p>Restaurants:</p>
+	<p>Airlines:</p>  </div>
+</div>
+
+</div>
+<script>
+function myFunction() {
+  var x = document.getElementById("dropdown");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+var elements = document.getElementsByClassName("column");
+var i;
+
+function listView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "100%";
+  }
+}
+function gridView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "50%";
+  }
+}
+var container = document.getElementById("btnContainer");
+var btns = container.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+</body>
+</html>
