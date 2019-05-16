@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-   background-image: url("img/travel.jpg");
+   background-image: url("img/bg-01.jpg");
    background-repeat: no-repeat;
    background-attachment: fixed;
    background-size: 100%100%;
@@ -50,8 +50,11 @@ body {
 #myMenu li a {
   padding: 12px;
   text-decoration: none;
-  color: black;
-  display: block
+  color: white;
+  display: block;
+  background-color: #ccaea1e0;
+  border-radius: 12px;
+
 }
 
 #myMenu li a:hover {
@@ -59,7 +62,7 @@ body {
 }
 
   .button {
-  background: #84caee;
+  background: #ccaea1e0;
   border: none;
   color: white;
   padding: 15px 32px;
