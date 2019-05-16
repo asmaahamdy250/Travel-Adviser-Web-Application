@@ -1,4 +1,4 @@
-33<html>
+﻿33<html>
 <head>
 <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
@@ -96,7 +96,7 @@ font-family:
 </style>
 </head>
 <body>
-<?php>
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -111,12 +111,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-if(isset($_POST['btn']))
+if(isset($_POST['submit']))
 {
 $sql = "INSERT INTO `feedback` (`Comment`,`ID`) values('".$_POST['feedback']."','".uniqid()."')";
 $result = $conn->query($sql);
 
-  header('Location:FeedBack Thanks.html');
+  header('Location:Feedback Thanks.html');
   
   
 }
