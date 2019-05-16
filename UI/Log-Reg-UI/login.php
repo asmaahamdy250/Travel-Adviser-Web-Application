@@ -61,7 +61,7 @@ if(isset($_POST["login"])){
 		$password2 = $row2['Password'];
       if(($username2 == $_POST['username'] )&&($password2 ==$_POST['pass'])){
 	  
-       header('Location:admin.html');
+       header('Location:../Asmaa/admin.html');
       } 
 	  
 		
