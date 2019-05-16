@@ -116,7 +116,7 @@ if(isset($_POST['btn']))
 $sql = "INSERT INTO `feedback` (`Comment`,`ID`) values('".$_POST['feedback']."','".uniqid()."')";
 $result = $conn->query($sql);
 
-  header('Location:FeedBack Thanks.html.html');
+  header('Location:FeedBack Thanks.html');
   
   
 }
