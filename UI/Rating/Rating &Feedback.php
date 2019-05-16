@@ -111,11 +111,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-echo "Connected successfully";
-if (isset($_POST['submit']))
+if(isset($_POST['btn']))
 {
-$sql = "INSERT INTO feedback (comment)values($_POST['feedback'])";
+$sql = "INSERT INTO `feedback` (`Comment`,`ID`) values('".$_POST['feedback']."','".uniqid()."')";
 $result = $conn->query($sql);
+
+  header('Location:FeedBack Thanks.html.html');
+  
+  
 }
 
 ?>
@@ -131,15 +134,15 @@ $result = $conn->query($sql);
 
 <tr>
 <th class="mytable">
-<form method="post" action="">
+<form method="post" action="Rating &Feedback.php">
 
 
 <div align='center' class="rating">
 <span >☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
 </div>
 
-<textarea cols="60" rows="10" name="feebback"> Message </textarea>
-<center> <button type="button" class="btn btn-lg btn-block btn-danger" onclick="window.location.href='FeedBack Thanks.html'"name="submit"> Submit</button> </center>
+<textarea cols="60" rows="10" name="feedback"> Message </textarea>
+<center> <button type="submit" class="btn btn-lg btn-block btn-danger" name="submit"> Submit</button> </center>
 </th>
 <th >
 <center class="mytable1" >We'd &#9829; to help you</center>
