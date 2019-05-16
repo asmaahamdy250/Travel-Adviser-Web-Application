@@ -42,30 +42,42 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-$sql = "SELECT Username,Password FROM user ";
-$result = $conn->query($sql);
+$sql1 = "SELECT Username,Password FROM user ";
+$result1 = $conn->query($sql1);
+$sql2 = "SELECT Username,Password FROM admin ";
+$result2 = $conn->query($sql2);
 if(isset($_POST["login"])){     
-   while($row=mysqli_fetch_assoc($result)) {
-        $username = $row['Username'];
-		$password = $row['Password'];
-      if(($username == $_POST['username'] )&&($password ==$_POST['pass'])){
+   while($row1=mysqli_fetch_assoc($result1)) {
+        $username1 = $row1['Username'];
+		$password1 = $row1['Password'];
+      if(($username1 == $_POST['username'] )&&($password1 ==$_POST['pass'])){
 	  
-       header('Location:index.html');
-      }
-	  else
-	  {
-	  echo"invalid username or password";
-	  }
-	  
+       header('Location:../Home Page/Home Page.html');
+      } 
+	 
    }
+      while($row2=mysqli_fetch_assoc($result2)) {
+        $username2 = $row2['Username'];
+		$password2 = $row2['Password'];
+      if(($username2 == $_POST['username'] )&&($password2 ==$_POST['pass'])){
+	  
+       header('Location:../Asmaa/admin.html');
+      } 
+	  
+		
+   }
+     echo"invalid username or password";
+    
 }
+
+
 ?>
 
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form"action="login.php">
+				<form class="login100-form validate-form"action="login.php"method="post">
 					<span class="login100-form-logo">
 						 <i source="logo.jpg"></i>
 					</span>
@@ -92,7 +104,7 @@ if(isset($_POST["login"])){
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn"name="login">
+						<button class="login100-form-btn"type="submit"name="login">
 							Login
 						</button>
 					</div>
