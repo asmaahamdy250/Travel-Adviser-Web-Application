@@ -52,7 +52,7 @@ if(isset($_POST["login"])){
 		$password1 = $row1['Password'];
       if(($username1 == $_POST['username'] )&&($password1 ==$_POST['pass'])){
 	  
-       header('Location:index.html');
+       header('Location:Home Page.html');
       } 
 	 
    }
