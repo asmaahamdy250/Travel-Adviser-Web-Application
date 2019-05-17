@@ -78,10 +78,7 @@ $result2= $conn->query($sql2);
 		 <label class="style"><?php echo $row1["LevelOfService"] ?></label>
          </td>		 
       </tr>
-				<?php
-				}
-				?>
-				<?php
+	  <?php
 				while($row2 = $result2->fetch_assoc())
 				{
 				?>
@@ -110,6 +107,10 @@ $result2= $conn->query($sql2);
 				}
 	 
 	  ?>
+				<?php
+				}
+				?>
+				
 	  <tr>
 		<td colspan="2"> <center>     
 			<input  class="btn btn-danger" type="button" value="Cancel The Trip" onclick="window.location.href='Cancel Trip.html'"></input>
