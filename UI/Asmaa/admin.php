@@ -19,6 +19,10 @@ if (isset($_POST['edit'])){
 <link rel="stylesheet" type="text/css" href="admin.css">
 <title>Admin Page</title>
 </head>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> adac7c5efdae7433a66e8b7abc0fd9ef1ea3d55a
 
 <body>
 <nav style="height: 50px; background-color: white; font-family:fantasy; font-size:30px; position: fixed; width: 100%;"> TAWA
@@ -63,21 +67,22 @@ if (isset($_POST['edit'])){
 		}
 			
 			if (isset($_POST['search'])){
-				$username = $_POST['uname'];
+				$_SESSION['user']= $_POST['uname'];
 				//$sql = mysql_query("DELETE FROM `user` WHERE Username='$username'");
-				$sql = "SELECT `Username` FROM `user` WHERE Username='$username'";
-				$res = $conn->query($sql);
+				$sql1 = "SELECT `Username` FROM `user` WHERE Username='".$_POST['uname']."'";
+				$res1 = $conn->query($sql1);
 				//$row = $res->fetch_assoc();
-				while($row = $res->fetch_assoc()){
-					$username = $row['Username'];
-					echo "<li name = 'name' style='font-size:25px;'> $row[Username]"."</li>"."<br> <br>";
-					if(isset($_POST['delete'])){
-						echo "$username";
-					}
+				while($row1 = $res1->fetch_assoc()){
+					//$username = $row['Username'];
+					echo "<li name = 'name' style='font-size:25px;'> $row1[Username]"."</li>"."<br> <br>";
+					
 				}
 				
 			}
-			
+			if(isset($_POST['delete'])){
+						$sql2 = "DELETE FROM `user` WHERE Username='".$_SESSION['user']."'";
+						$res2 = $conn->query($sql2);
+					}
 			/*if(isset($_POST['delete'])){
 						$username = $_POST['name'];
 						echo "$username";
