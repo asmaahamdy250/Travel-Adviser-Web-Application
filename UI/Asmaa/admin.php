@@ -39,7 +39,7 @@ if (isset($_POST['edit'])){
     <div style="float: left; display: inline;">
     <h2 style="color: white;"> Current Users</h2>
     <input type="text" id="mySearch" name="uname" onkeyup="myFunction()" placeholder="Type here.." title="Type in a category" />
-	<button type="submit" name = "search" value = "Search" class="button" style="display: inline; padding:5px;" onclick="" >
+	<button type="submit" name = "search" value = "Search" class="button" style="display: inline; padding:5px;"  >
 		<img src='img/icons/search.png' style='width: 20px; height: 17px;' />  Search
 	</button>
 	<button type='submit' name = 'edit' class='button' style='display: inline; padding:4px;margin-top:5px;"'onclick="window.location.href='registration.html'">
