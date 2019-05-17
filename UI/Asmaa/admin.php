@@ -64,7 +64,7 @@ $username = "root";
 		}
 			
 			if (isset($_POST['search'])){
-				//$username = $_POST['uname'];
+				$_SESSION['user']= $_POST['uname'];
 				//$sql = mysql_query("DELETE FROM `user` WHERE Username='$username'");
 				$sql1 = "SELECT `Username` FROM `user` WHERE Username='".$_POST['uname']."'";
 				$res1 = $conn->query($sql1);
@@ -77,7 +77,7 @@ $username = "root";
 				
 			}
 			if(isset($_POST['delete'])){
-						$sql2 = "DELETE FROM `user` WHERE Username='".$_POST['uname']."'";
+						$sql2 = "DELETE FROM `user` WHERE Username='".$_SESSION['user']."'";
 						$res2 = $conn->query($sql2);
 					}
 			/*if(isset($_POST['delete'])){
