@@ -2,14 +2,14 @@
 session_start();
 $servername = "localhost";
 $username = "root";
-		$password = "";
-		$dbname = "tawa_db";
+$password = "";
+$dbname = "tawa_db";
 
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		if (isset($_POST['edit'])){
-			header("location:add.php");
-		}
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+if (isset($_POST['edit'])){
+	header("location:edit.php");
+}
 		
 ?>
 <!DOCTYPE html>
@@ -19,50 +19,7 @@ $username = "root";
 <link rel="stylesheet" type="text/css" href="admin.css">
 <title>Admin Page</title>
 </head>
-	
-<?php
-/* session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tawa_db";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-$sql1 = "SELECT Username FROM user ";
-$result1 = $conn->query($sql1);
-
-if(isset($_POST["login"])){     
-   while($row1=mysqli_fetch_assoc($result1)) {
-        $username1 = $row1['Username'];
-		$password1 = $row1['Password'];
-      if(($username1 == $_POST['username'] )&&($password1 ==$_POST['pass'])){
-	  
-       header('Location:../Home Page/Home Page.html');
-      } 
-	 
-   }
-      while($row2=mysqli_fetch_assoc($result2)) {
-        $username2 = $row2['Username'];
-		$password2 = $row2['Password'];
-      if(($username2 == $_POST['username'] )&&($password2 ==$_POST['pass'])){
-	  
-       header('Location:../Asmaa/admin.html');
-      } 
-	  
-		
-   }
-     echo"invalid username or password";
-    
-} */
-
-
-?> 
 <body>
 <nav style="height: 50px; background-color: white; font-family:fantasy; font-size:30px; position: fixed; width: 100%;"> TAWA
 
