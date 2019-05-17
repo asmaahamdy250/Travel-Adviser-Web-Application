@@ -104,7 +104,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         </div>
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="button" style=" background-color: red;" onclick="window.location.href='admin.php'">Cancel</button>
-                            <button class="btn btn--pill btn--green" type="submit" style="float: right;" onclick="window.location.href='updateSuccess.html'">Add</button>
+                            <button class="btn btn--pill btn--green" type="submit" style="float: right;" type="submit">Add</button>
                         </div>
                     </form>
                 </div>
