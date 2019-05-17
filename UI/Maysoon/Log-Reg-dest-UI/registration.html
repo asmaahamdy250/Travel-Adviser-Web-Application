@@ -46,7 +46,7 @@
                             <input class="input--style-3" type="text" placeholder="Full Name" id="name" >
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname" id="lname" /> 
+                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname" id="username" /> 
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                         </div>
                         
@@ -83,7 +83,7 @@
 	function validationform()
 	{
 		var name = document.getElementById('name');
-		var lname = document.getElementById('lname');
+		var lname = document.getElementById('username');
 		var email = document.getElementById('email');
 		var phone = document.getElementById('phone');
 		var password = document.getElementById('password');
@@ -96,17 +96,22 @@
 		{
 			alert("your full name shouldn't be more than 24 letter ");
 		}
-		if(lname.size > 12)
+		if(lname.value > 2)
 		{
-			alert("your name shouldn't be more than 12 letter ");
+			alert("your user name shouldn't be more than 12 letter ");
+
 		}
 		if(password.value != cpassword.value)
 		{
 			alert(" the password and the confirmation password are not matched ");
 		}
-		if(!isNaN(phone.value))
+		if(isNaN(phone.value))
 		{
 			alert("your phone must be a numbers  ");
+		}
+		else
+		{
+			window.location.href="../../Home Page/Home Page.html";
 		}
 	}
    </script>
