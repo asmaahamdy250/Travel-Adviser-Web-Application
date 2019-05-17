@@ -43,27 +43,27 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Full Name" name="name">
+                            <input class="input--style-3" type="text" placeholder="Full Name" id="name" >
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname">
+                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname" id="username" /> 
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                         </div>
                         
                         <div class="input-group">
-                            <input class="input--style-3" type="email" placeholder="Email" name="email">
+                            <input class="input--style-3" type="email" placeholder="Email" id="email">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Phone" name="phone">
+                            <input class="input--style-3" type="text" placeholder="Phone" id="phone">
                         </div>
 						<div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Password" name="password">
+                            <input class="input--style-3" type="password" placeholder="Password" id="password">
                         </div>
 						<div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword">
+                            <input class="input--style-3" type="password" placeholder="Confirm Password" id="cpassword">
                         </div>
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="button" onclick="window.location.href='home1.html'">Submit</button>   &nbsp
+                            <button class="btn btn--pill btn--green" type="button" onclick = "validationform()" onclick="window.location.href='../../Home Page/Home Page.html'" ">Submit</button>   &nbsp
 							<a href="login.html" colo> login </a>
                         </div>
                     </form>
@@ -71,7 +71,6 @@
             </div>
         </div>
     </div>
-
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
@@ -80,9 +79,43 @@
     <script src="vendor/datepicker/daterangepicker.js"></script>
 
     <!-- Main JS-->
-    <script src="js/global.js"></script>
+	<script>
+	function validationform()
+	{
+		var name = document.getElementById('name');
+		var lname = document.getElementById('username');
+		var email = document.getElementById('email');
+		var phone = document.getElementById('phone');
+		var password = document.getElementById('password');
+		var cpassword = document.getElementById('cpassword');
+		if(name.value == 0 || lname.value == 0 || email.value == 0 || phone.value == 0 || password.value == 0 )
+		{
+			alert (" your data is incorrect or incomplete ... please recheck your data");
+		}
+		if(name.size > 24)
+		{
+			alert("your full name shouldn't be more than 24 letter ");
+		}
+		if(lname.value > 2)
+		{
+			alert("your user name shouldn't be more than 12 letter ");
+
+		}
+		if(password.value != cpassword.value)
+		{
+			alert(" the password and the confirmation password are not matched ");
+		}
+		if(isNaN(phone.value))
+		{
+			alert("your phone must be a numbers  ");
+		}
+		else
+		{
+			window.location.href="../../Home Page/Home Page.html";
+		}
+	}
+   </script>
 
 </body><!-- This templates was made y Colorlib (https://colorlib.com) -->
-
 </html>
 <!-- end document-->

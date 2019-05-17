@@ -1,6 +1,16 @@
 <?php
 session_start();
+$servername = "localhost";
+$username = "root";
+		$password = "";
+		$dbname = "tawa_db";
 
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		if (isset($_POST['edit'])){
+			header("location:add.php");
+		}
+		
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,53 +78,62 @@ if(isset($_POST["login"])){
   <div class="left" style="background-color:#0000009c; width: 100%; height:650px;">
     <center>Admin Panel</center>
 
-
-	<?php
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "tawa_db";
-
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		$sql = "SELECT `Username` FROM `user` WHERE 1";
-		$result = $conn->query($sql);
-	?>
+	<form method='post'>
     <div style="float: left; display: inline;">
     <h2 style="color: white;"> Current Users</h2>
-    <input type="text" id="mySearch" name="uname" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-    <br> <br>
-	
-	<form method='post'>
+    <input type="text" id="mySearch" name="uname" onkeyup="myFunction()" placeholder="Type here.." title="Type in a category" />
+	<button type="submit" name = "search" value = "Search" class="button" style="display: inline; padding:5px;" onclick="" >
+		<img src='img/icons/search.png' style='width: 20px; height: 17px;' />  Search
+	</button>
+	<button type='submit' name = 'edit' class='button' style='display: inline; padding:4px;margin-top:5px;"'onclick="window.location.href='registration.html'">
+         <img src='img/icons/edit.png' style='width: 20px; height: 17px;' />  Edit
+    </button>
+	<button type = 'submit' class='button' name='delete' style='display:inline;padding:4px;' onclick=''>
+        <img src='img/icons/trash.png' style='width: 20px; height: 17px;' />  Delete
+    </button>
+    <br> <br> <br>
 
     <ul id="myMenu" style="color: white; margin-left: 20px;">
 
 		<?php
+		if (!isset($_POST['search']) && !isset($_POST['delete'])){
+			$sql = "SELECT `Username` FROM `user` WHERE 1";
+			$result = $conn->query($sql);
 			while($row = $result->fetch_assoc())
 			{
-				echo "<li style='font-size:25px;'> $row[Username]" 
-					."<a href='#' class='button' style='display: inline; padding:4px; float:right;'onclick='window.location.href='registration.html''>"
-         ."<img src='img/icons/edit.png' style='width: 20px; height: 17px;' />"
-       ."</a>"
-
-       ."<button type = 'submit' class='button' name='delete' style='display:inline;padding:4px; float:right;' onclick=''>"
-        ."<img src='img/icons/trash.png' style='width: 20px; height: 17px;' />"
-       ."</button> <br> <br>"
-     ."</li>";
+				echo "<li style='font-size:25px;'> $row[Username]"."</li>"."<br> <br>";
 			}
+		}
+			
+			if (isset($_POST['search'])){
+				$username = $_POST['uname'];
+				//$sql = mysql_query("DELETE FROM `user` WHERE Username='$username'");
+				$sql = "SELECT `Username` FROM `user` WHERE Username='$username'";
+				$res = $conn->query($sql);
+				//$row = $res->fetch_assoc();
+				while($row = $res->fetch_assoc()){
+					$username = $row['Username'];
+					echo "<li name = 'name' style='font-size:25px;'> $row[Username]"."</li>"."<br> <br>";
+					if(isset($_POST['delete'])){
+						echo "$username";
+					}
+				}
+				
+			}
+			
+			/*if(isset($_POST['delete'])){
+						$username = $_POST['name'];
+						echo "$username";
+						//$username = $_POST['name'];
+						$sql = "DELETE FROM `user` WHERE Username='$username'";
+						if($conn->query($sql) === true){
+						header("location:admin.php");
+						//echo "$username";
+						}*/
+				
 		?>
     </ul>
 	</form>
-	<?php
-		if (isset($_POST['delete'])){
-			$username = $_POST('uname');
-			$sql = mysql_query("DELETE FROM `user` WHERE Username='$username'");
-
-			if($sql){
-				header("location:admin.php");
-			}
-		}
-	?>
 
   </div>
 
