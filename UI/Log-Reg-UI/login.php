@@ -30,6 +30,7 @@
 <body>
 <?php
 session_start();
+$_SESSION['message'] = '';
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -53,7 +54,9 @@ if(isset($_POST["login"])){
       if(($username1 == $_POST['username'] )&&($password1 ==$_POST['pass'])){
 	  
        header('Location:../Home Page/Home Page.html');
-      } 
+      } else{
+		  $_SESSION['message'] = "invalid username or password";
+	  }
 	 
    }
       while($row2=mysqli_fetch_assoc($result2)) {
@@ -62,11 +65,11 @@ if(isset($_POST["login"])){
       if(($username2 == $_POST['username'] )&&($password2 ==$_POST['pass'])){
 	  
        header('Location:../Asmaa/admin.php');
-      } 
-	  
-		
+      } else{
+		  $_SESSION['message'] = "invalid username or password";
+	  }	
    }
-     echo"invalid username or password";
+     //$_SESSION['message'] = "invalid username or password";
     
 }
 
@@ -85,6 +88,7 @@ if(isset($_POST["login"])){
 					<span class="login100-form-title p-b-34 p-t-27">
 						Log in
 					</span>
+					<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
 						<input class="input100" type="text" name="username" placeholder="Username">
@@ -115,7 +119,7 @@ if(isset($_POST["login"])){
 						</a>
 					</div>
 					<div class="text-center p-t-90">
-						<a class="txt1" href="registration.html">
+						<a class="txt1" href="registration.php">
 							go to sign-up page
 						</a>
 					</div>
