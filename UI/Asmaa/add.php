@@ -1,3 +1,39 @@
+<?php
+session_start();
+$_SESSION['errormessage'] = '';
+$_SESSION['successmessage'] = '';
+
+$mysqli = new mysqli('localhost', 'root', '', 'tawa_db');
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	//two passwords are equal to each other
+	if($_POST['password'] == $_POST['cpassword'])
+	{
+		$username = $mysqli->real_escape_string($_POST['uname']);
+		$fullname = $mysqli->real_escape_string($_POST['name']);
+		$email = $mysqli->real_escape_string($_POST['email']);
+		$password = md5($_POST['password']);
+		$phone = $mysqli->real_escape_string($_POST['phone']);
+		$confirmPassword = md5($_POST['cpassword']);
+		
+		$sql = "INSERT INTO `user`(`Username`, `Password`, `FullName`, `Phone`, `Email`, `confirmpassword`) VALUES ('$username','$password','$fullname','$phone','$email','$confirmPassword')";
+		
+		if($mysqli->query($sql) === true)
+		{
+			$_SESSION['successmessage'] = "Congratulations! A new user has been created successfully";
+			//header("location: admin.php");
+		}
+		else
+		{
+			$_SESSION['errormessage'] = "The data entered were invalid, Please re-enter your data";
+		}
+	}
+	else
+	{
+		$_SESSION['errormessage'] = "The Password Not Matched";
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +46,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Registerarion</title>
+    <title>Add User</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -41,16 +77,10 @@
                 <div class="card-heading"> </div>
                 <div class="card-body" style="margin-left: 50px;">                      
                      <form method="POST">
+					 <div class="alert alert-error"><?= $_SESSION['errormessage'] ?></div>
+					 <div class="alert alert-success"><?= $_SESSION['successmessage'] ?></div>
 					<div class="form-row p-t-20">
                             
-                            <div class="p-t-15">
-                                <label class="radio-container m-r-55" style="color: white;">Admin
-                                    <input type="radio" checked="checked" name="exist">
-                                </label>
-                                <label class="radio-container" style="color: white;">User
-                                    <input type="radio" name="exist">
-                                </label>
-                            </div>
                         </div>
                         <div class="input-group">
                             <input class="input--style-3" type="text" placeholder="Full Name" name="name">
@@ -73,8 +103,8 @@
                             <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword">
                         </div>
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit" style=" background-color: red;">Cancel</button>
-                            <button class="btn btn--pill btn--green" type="submit" style="float: right;" onclick="window.location.href='updateSuccess.html'">Submit</button>
+                            <button class="btn btn--pill btn--green" type="button" style=" background-color: red;" onclick="window.location.href='admin.php'">Cancel</button>
+                            <button class="btn btn--pill btn--green" type="submit" style="float: right;" onclick="window.location.href='updateSuccess.html'">Add</button>
                         </div>
                     </form>
                 </div>

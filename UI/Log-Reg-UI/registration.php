@@ -1,3 +1,50 @@
+<?php
+session_start();
+$_SESSION['message'] = '';
+
+$mysqli = new mysqli('localhost', 'root', '', 'tawa_db');
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	//two passwords are equal to each other
+	if($_POST['password'] == $_POST['cpassword'])
+	{
+		$userType = $_POST['exist'];
+		$username = $mysqli->real_escape_string($_POST['uname']);
+		$fullname = $mysqli->real_escape_string($_POST['name']);
+		$email = $mysqli->real_escape_string($_POST['email']);
+		$password = md5($_POST['password']);
+		$phone = $mysqli->real_escape_string($_POST['phone']);
+		$confirmPassword = md5($_POST['cpassword']);
+		echo $userType;
+		
+		if($userType == "User")
+		{
+			$sql = "INSERT INTO `user`(`Username`, `Password`, `FullName`, `Phone`, `Email`, `confirmpassword`) VALUES ('$username','$password','$fullname','$phone','$email','$confirmPassword')";
+		}
+		else if($userType == "Admin")
+		{
+			$sql = "INSERT INTO `admin`(`Username`, `Password`, `FullName`, `Phone`, `Email`, `confirmpassword`) VALUES ('$username','$password','$fullname','$phone','$email','$confirmPassword')";
+		}
+		else
+		{
+			$_SESSION['message'] = "Choose The User Type";
+		}
+		if($mysqli->query($sql) === true)
+		{
+			$_SESSION['message'] = "Congratulations! A new account has been created successfully";
+			header("location: login.php");
+		}
+		else
+		{
+			$_SESSION['message'] = "The data entered were invalid, Please re-enter your data";
+		}
+	}
+	else
+	{
+		$_SESSION['message'] = "The Password Not Matched";
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +57,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Registerarion</title>
+    <title>Au Register Forms by Colorlib</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -24,31 +71,25 @@
 
     <!-- Main CSS-->
     <link href="css/style.css" rel="stylesheet" media="all">
-    <style type="text/css">
-          body {
-   background-image: url("img/bg-img/editor-2.jpg");
-   background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-size: 100%100%;
-  
-}
-    </style>
 </head>
 
 <body>
-    
-            <div class="card card-3" style="background-color: #000000ab;">
+    <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w780">
+            <div class="card card-3">
                 <div class="card-heading"> </div>
-                <div class="card-body" style="margin-left: 50px;">                      
+                <div class="card-body">
+                    <h2 class="title">Welcome</h2>                       
                      <form method="POST">
+					 <div class="alert alert-error"><?= $_SESSION['message'] ?></div>
 					<div class="form-row p-t-20">
                             
                             <div class="p-t-15">
-                                <label class="radio-container m-r-55" style="color: white;">Admin
-                                    <input type="radio" checked="checked" name="exist">
+                                <label class="radio-container m-r-55">Admin
+                                    <input type="radio" checked="checked" name="exist" value="Admin">
                                 </label>
-                                <label class="radio-container" style="color: white;">User
-                                    <input type="radio" name="exist">
+                                <label class="radio-container">User
+                                    <input type="radio" name="exist" value="User">
                                 </label>
                             </div>
                         </div>
@@ -73,13 +114,14 @@
                             <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword">
                         </div>
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit" style=" background-color: red;">Cancel</button>
-                            <button class="btn btn--pill btn--green" type="submit" style="float: right;" onclick="window.location.href='updateSuccess.html'">Submit</button>
+                            <button class="btn btn--pill btn--green" type="submit">Submit</button>
+							<a href="login.html" colo> login </a>
                         </div>
                     </form>
                 </div>
             </div>
- 
+        </div>
+    </div>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
