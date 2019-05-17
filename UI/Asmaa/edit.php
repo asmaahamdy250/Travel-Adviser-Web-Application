@@ -64,6 +64,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		}
 		}
 }
+echo"<script>";
+echo"
+
+  $('uname').text('".$_SESSION['message']."');
+";
+echo"</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
