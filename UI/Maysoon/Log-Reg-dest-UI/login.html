@@ -40,12 +40,12 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Username" id="username">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="pass" placeholder="Password" id="pass">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -57,7 +57,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onclick="window.location.href='../../Home Page/Home Page.html'" type="button">
+						<button class="login100-form-btn" onclick="validatelogin()"  type="button" >
 							Login
 						</button>
 					</div>
@@ -71,11 +71,25 @@
 						</a>
 					
 				</form>
-			</div>
+			</div> 
 		</div>
 	</div>
 	
-
+	<script>
+	function validatelogin()
+	{
+		var username = document.getElementById('username');
+		var pas = document.getElementById('pass');
+		if(username.value == 0 || pass.value == 0 )
+		{
+			alert("Please Enter Your Data ");
+		}
+		else
+		{
+			window.location.href="../../Home Page/Home Page.html";
+		}
+	}
+	</script>
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
@@ -94,6 +108,7 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
 
 </body>
 </html>
