@@ -6,9 +6,48 @@
 
 </head>
 <title> Booking </title>
+<?php
+session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tawa_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+$sql1 = "SELECT Username FROM user ";
+ $result1 = $conn->query($sql1);
+if(isset($_POST["Book"])){     
+   while($row1=mysqli_fetch_assoc($result1)) {
+       if( $username = $row1['Username'])
+	   {
+		   $sql2 = "INSERT INTO `book`(`User_Username`, `Flight_FlightNumber`, `NumberOfSeats`, `PaymentMethod`) 
+		   values('".$_POST['username']."','".$_POST['FN']."','".$_POST['seats']."','".$_POST['payment']."')";
+           $sql3="INSERT INTO `flight`(`FlightNumber`, `FlightType`, `LevelOfService`, `AirLines`, `Travel_Date`, `Travel_Destination`) 
+		   VALUES ('".$_POST['FN']."','".$_POST['Type']."','".$_POST['LOS']."','".$_POST['airline']."','".$_POST['Date']."','".$_POST['Destination']."')";
+
+		  
+			$result2 = $conn->query($sql2);
+			$result3 = $conn->query($sql3);
+			header('Location:../Booking/Thanks for booking.html');
+		   
+	   }
+		
+     
+    
+}
+}
+
+?>
+
 <body for id="white" topmargin="60%"> 
 
-<form method="GET">
+<form method="post" action="Booking.php">
 <center>
 		   
    <table  for id="white"  cellspacing="30%" cellpadding="20%" width="40%">
@@ -17,6 +56,14 @@
          <td colspan="2">
 	       <center><p>Booking Form!</p></center>	       
 	     </td>	
+      </tr>
+	  <tr>
+         <td>
+		  <label class="style">USERNAME</label>
+	     </td>
+         <td class="input">
+           <input type="text" name="username" min="1" max="14" required>
+         </td>		 
       </tr>
 	  
       <tr>
@@ -32,7 +79,7 @@
            <label class="style">Service Level</label>
 	     </td>
          <td class="input">
-		 <select>
+		 <select name="LOS">
 		 <option value="Economy" width="30">Economy</option>
 		<option value="Business" width="30">Business</option>
 		<option value="Luxurious" width="30">Luxurious</option>
@@ -45,7 +92,7 @@
            <label class="style">Payment Method</label>
 	     </td>
          <td class="input">
-	      <select id="payment" onchange=myFunction()>
+	      <select name="payment" >
 		<option value="Debit Card" width="30">Debit Card</option>      
 	    <option value="Cash" width="30">Cash</option>
 		</td>		 
@@ -56,9 +103,9 @@
          <td>
            <label class="style">Debit card Number</label>
 	     </td>
-		 <td calss="input">
+		 <td class="input">
 		 
-		 <input id="Card" type="Number" required>
+		 <input name="Card" type="Number" required>
 		 
 		 </tr>
 	  <tr>
@@ -70,13 +117,39 @@
 		   <input type="radio" name="Type" value="Round-Trip">Round-Trip</input>
          </td>		 
       </tr>
-	  
+	  <tr>
+         <td>
+           <label class="style">Flight Number</label>
+	     </td>
+		 <td class="input">
+		 
+		 <input name="FN" type="Number" required>
+		 
+		 </tr>
+	    <tr>
+         <td>
+           <label class="style">Travel Date</label>
+	     </td>
+		 <td class="input">
+		 
+		 <input name="Date" type="date" required>
+		 
+		 </tr>
+		   <tr>
+         <td>
+           <label class="style">Travel Destination</label>
+	     </td>
+		 <td class="input">
+		 
+		 <input name="Destination" type="text" required>
+		 
+		 </tr>
 	  <tr>
          <td>
            <label class="style">Airline</label>
 	     </td>
 		 <td>
-		   <select >
+		   <select name="airline" >
 		     <option value="Egypt Air" width="30">Egypt Air</option>
 			 <option value="Fly Emirates" width="30">Fly Emirates</option>
 			 <option value="Qatari Airways" width="30">Qatari Airways</option>
@@ -92,7 +165,7 @@
 	  
 	  <tr>
 		<td colspan="2"> <center>     
-			<input  class="btn btn-danger" type="submit" value="Book Now" onsubmit="submitForm()"/>
+			<input  class="btn btn-danger" type="submit" value="Book Now" name="Book" />
 			<input class="btn btn-warning" type="button" value="Cancel" onclick="window.location.href='../Home Page/Home Page.html'" />
 		</td>
 	
@@ -105,22 +178,8 @@
 
 </center>
 	<script>
-	function submitForm()
-	{
-		window.location.href='Thanks for booking.html';
-	}
-	function myFunction()
-	{
-	  var x = document.getElementById("payment").value;
-	  if(x == "Cash")
-	  {
-	  document.getElementById("Card").disabled=true;
-	  }
-	  else 
-	  {
-	  	  document.getElementById("Card").disabled=false;
-	  }
-	}
+	
+	
 	</script>
   
 
