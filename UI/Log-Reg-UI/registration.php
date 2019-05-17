@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		$password = md5($_POST['password']);
 		$phone = $mysqli->real_escape_string($_POST['phone']);
 		$confirmPassword = md5($_POST['cpassword']);
-		echo $userType;
+		//echo $userType;
 		
 		if($userType == "User")
 		{
@@ -115,7 +115,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         </div>
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="submit">Submit</button>
-							<a href="login.html" colo> login </a>
+							<a href="login.php" colo> login </a>
                         </div>
                     </form>
                 </div>
