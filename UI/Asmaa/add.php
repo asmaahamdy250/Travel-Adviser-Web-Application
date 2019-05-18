@@ -83,24 +83,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                             
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Full Name" name="name">
+                            <input class="input--style-3" type="text" placeholder="Full Name" name="name" required>
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname">
+                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname" required>
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                         </div>
                         
                         <div class="input-group">
-                            <input class="input--style-3" type="email" placeholder="Email" name="email">
+                            <input class="input--style-3" type="email" placeholder="Email" name="email" required>
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Phone" name="phone">
+                            <input class="input--style-3" type="text" placeholder="Phone" name="phone" required>
                         </div>
 						<div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Password" name="password">
+                            <input class="input--style-3" type="password" placeholder="Password" name="password" required>
                         </div>
 						<div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword">
+                            <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword" required>
                         </div>
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="button" style=" background-color: red;" onclick="window.location.href='admin.php'">Cancel</button>
