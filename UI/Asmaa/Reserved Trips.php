@@ -38,22 +38,28 @@ $result2= $conn->query($sql2);
    
      <tr>
          <td colspan="2">
-	       <center><p>Your Reserved Trips</p></center>	       
+	       <center><p>Your Reserved Trips</p></center>	
+		   
 	     </td>	
       </tr>
 	  
      <?php
-	 
+	 $x=1;
 	 while($row1=mysqli_fetch_assoc($result1))
 				{
 					?>
 				
+				
 				 <tr>
+				 
          <td>
-           <label class="style">Flight Type</label>
+		 
+		 <br>
+		 
+           <label class="style" > <span style="color:#dc3545;">Flight #<?php echo $x++;?> </span><br><br>Flight Type </label>
 	     </td>
          <td>
-           <label class="style"><?php echo $row1['FlightType'] ?></label>
+           <label class="style"><br><br><br><?php echo $row1['FlightType'] ?></label>
 
          </td>		 
       </tr>
@@ -77,7 +83,8 @@ $result2= $conn->query($sql2);
          <td >
 		 <label class="style"><?php echo $row1["LevelOfService"] ?></label>
          </td>		 
-      </tr>
+      </tr><hr>
+	  
 	  <?php
 				while($row2 = $result2->fetch_assoc())
 				{
@@ -102,15 +109,13 @@ $result2= $conn->query($sql2);
            <label class="style"><?php echo $row2["NumberOfSeats"]?></label>
          </td>		 
       </tr>
+	  
+	  
 	  <?php
 	
 				}
 	 
 	  ?>
-				<?php
-				}
-				?>
-				
 	  <tr>
 		<td colspan="2"> <center>     
 			<input  class="btn btn-danger" type="button" value="Cancel The Trip" onclick="window.location.href='Cancel Trip.html'"></input>
@@ -118,6 +123,12 @@ $result2= $conn->query($sql2);
 		</td>
 	
 	  </tr>
+				<?php
+				
+				}
+				?>
+				
+	  
 	  </table>
 
 				

@@ -47,7 +47,8 @@ $sql1 = "SELECT Username,Password FROM user ";
 $result1 = $conn->query($sql1);
 $sql2 = "SELECT Username,Password FROM admin ";
 $result2 = $conn->query($sql2);
-if(isset($_POST["login"])){     
+if(isset($_POST["login"])){  
+$_SESSION['user']=$_POST['username'];   
    while($row1=mysqli_fetch_assoc($result1)) {
         $username1 = $row1['Username'];
 		$password1 = $row1['Password'];
