@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		$phone = $mysqli->real_escape_string($_POST['phone']);
 		$confirmPassword = $_POST['cpassword'];
 		//echo $userType;
-		
+
 		if($userType == "User")
 		{
 			$sql = "INSERT INTO `user`(`Username`, `Password`, `FullName`, `Phone`, `Email`, `confirmpassword`) VALUES ('$username','$password','$fullname','$phone','$email','$confirmPassword')";
