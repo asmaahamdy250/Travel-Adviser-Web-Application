@@ -51,7 +51,7 @@ if(isset($_POST["login"])){
    while($row1=mysqli_fetch_assoc($result1)) {
         $username1 = $row1['Username'];
 		$password1 = $row1['Password'];
-      if(($username1 == $_POST['username'] )&&($password1 ==$_POST['pass'])){
+      if(($username1 == $_POST['username'] )&&($password1 ==md5($_POST['pass']))){
 	  
        header('Location:../Home Page/Home Page.html');
       } else{

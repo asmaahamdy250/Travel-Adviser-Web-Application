@@ -12,9 +12,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		$username = $mysqli->real_escape_string($_POST['uname']);
 		$fullname = $mysqli->real_escape_string($_POST['name']);
 		$email = $mysqli->real_escape_string($_POST['email']);
-		$password = md5($_POST['password']);
+		$password = $_POST['password'];
 		$phone = $mysqli->real_escape_string($_POST['phone']);
-		$confirmPassword = md5($_POST['cpassword']);
+		$confirmPassword = $_POST['cpassword'];
 		//echo $userType;
 		
 		if($userType == "User")
