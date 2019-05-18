@@ -4,55 +4,38 @@ $_SESSION['errormessage'] = '';
 $_SESSION['successmessage'] = '';
 
 $mysqli = new mysqli('localhost', 'root', '', 'tawa_db');
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	
-		$username = $mysqli->real_escape_string($_POST['uname']);
-		$fullname = $mysqli->real_escape_string($_POST['name']);
-		$email = $mysqli->real_escape_string($_POST['email']);
-		$password = $_POST['password'];
-		$phone = $mysqli->real_escape_string($_POST['phone']);
-		$confirmPassword = $_POST['cpassword'];
-		
-		if($username == '')
-		{
-			$_SESSION['errormessage'] = "Please Enter The Username of the user you want Update";
-		}else{
-		
-		$sql = "SELECT * FROM `user` WHERE `Username`='$username'";
+$sql = "SELECT * FROM `user` WHERE `Username`='".$_SESSION['user']."'";
 		$result = $mysqli->query($sql);
 		while($row = $result->fetch_assoc())
 		{
-			if($password == '')
-			{
-				$password = $row['Password'];
-			}
-			if($fullname == '')
-			{
-				$fullname = $row['FullName'];
-			}
-			if($phone == '')
-			{
-				$phone = $row['Phone'];
-			}
-			if($email == '')
-			{
-				$email = $row['Email'];
-			}
-			if($confirmPassword == '')
-			{
-				$confirmPassword = $row['confirmpassword'];
-			}
+			
+				$_SESSION['password'] = $row['Password'];
+			
+				$_SESSION['fname'] = $row['FullName'];
+			
+			
+				$_SESSION['phone']= $row['Phone'];
+			
+			
+				$_SESSION['email'] = $row['Email'];
+			
+			
+				$_SESSION['cpassword']= $row['confirmpassword'];
+			
 		}
-		//$sql = "INSERT INTO `user`(`Username`, `Password`, `FullName`, `Phone`, `Email`, `confirmpassword`) VALUES ('$username','$password','$fullname','$phone','$email','$confirmPassword')";
-		//two passwords are equal to each other
+		
+
+		
+
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
 		if($_POST['password'] == $_POST['cpassword'])
 		{
-			$sql = "UPDATE `user` SET `Password`='$password',`FullName`='$fullname',`Phone`='$phone',`Email`='$email',`confirmpassword`='$confirmPassword' WHERE `Username`='$username'";
+			$sql = "UPDATE `user` SET `Password`='".$_SESSION['password']."',`FullName`='".$_SESSION['fname']."',`Phone`='".$_SESSION['phone']."',`Email`='".$_SESSION['email']."',`confirmpassword`='".$_SESSION['cpassword']."' WHERE `Username`='".$_SESSION['user']."'";
 			if($mysqli->query($sql) === true)
 			{
 				$_SESSION['successmessage'] = "Congratulations! this user has been updated successfully";
-				//header("location: admin.php");
+				
 			}else
 			{
 				$_SESSION['errormessage'] = "The data entered were invalid, Please re-enter your data";
@@ -61,15 +44,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		else
 		{
 			$_SESSION['errormessage'] = "The Password Not Matched";
-		}
-		}
+		}		
+		
 }
-echo"<script>";
-echo"
-
-  $('uname').text('".$_SESSION['user']."');
-";
-echo"</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,24 +97,24 @@ echo"</script>";
                             
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Full Name" name="name">
+                            <input class="input--style-3" type="text" placeholder="Full Name" name="name" value="<?php echo $_SESSION['fname']; ?>">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname">
+                            <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" value="<?php echo $_SESSION['user']; ?>" name="uname">
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                         </div>
                         
                         <div class="input-group">
-                            <input class="input--style-3" type="email" placeholder="Email" name="email">
+                            <input class="input--style-3" type="email" placeholder="Email" name="email" value="<?php echo $_SESSION['email']; ?>">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Phone" name="phone">
+                            <input class="input--style-3" type="text" placeholder="Phone" name="phone" value="<?php echo $_SESSION['phone']; ?>">
                         </div>
 						<div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Password" name="password">
+                            <input class="input--style-3" type="password" placeholder="Password" name="password" value="<?php echo $_SESSION['password']; ?>">
                         </div>
 						<div class="input-group">
-                            <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword">
+                            <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_SESSION['cpassword']; ?>">
                         </div>
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="button" style=" background-color: red;" onclick="window.location.href='admin.php'">Cancel</button>
