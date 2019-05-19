@@ -5,21 +5,29 @@
 <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
 <title>FeedBack</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='css/laxvek.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
 <style>
 body
 {
 background-image:url('download.jfif');
- background-size:cover;	
+ background-size:cover; 
  scrolling:no;
 }
 div{
-width:90%;
-margin-left:5%;
-margin-right:5%;
-margin-top:5%;
-margin-bottom:5%;
-border-radius:30px;
-background-color:rgba(0,0,0,0.6);
+width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.6);
 }
 table{
 <!-- height:80%;
@@ -28,14 +36,14 @@ margin-left:5%;
 margin-right:5%;
 margin-top:5%;
 margin-bottom:5%;
-border-radius:30px; -->	
+border-radius:30px; --> 
 background-color:rgba(0,0,0,0.6);
 
 }
 .td{
 font-size:70;
 align:left;
-vertical-align:top;	
+vertical-align:top; 
 padding:20px;
 color:white;
 font-family:Cookie;
@@ -52,8 +60,8 @@ textarea,input[type=text] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-	border-radius:10px;
-	border=0 none;
+  border-radius:10px;
+  border=0 none;
 }
 .dotted{
 
@@ -69,7 +77,7 @@ textarea,input[type=text] {
 color:white;
 font-size:60;
 font-family:Parisienne;
-margin=0;	
+margin=0; 
 }
 font
 {
@@ -137,9 +145,53 @@ $result = $conn->query($sql);
 <form method="post" action="Rating &Feedback.php">
 
 
+
 <div align='center' class="rating">
-<span >☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-</div>
+
+
+<!-- the new rating-->
+
+<section class='rating-widget'>
+  
+  <!-- Rating Stars Box -->
+  <div class='rating-stars text-center'>
+    <ul id='stars'>
+      <li class='star' title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+    </ul>
+  </div>
+  
+  <div class='success-box'>
+    
+    <div class='text-message'></div>
+    
+  </div>
+  
+  
+  
+</section>
+
+ <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='js/laxvek.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
 
 <textarea cols="60" rows="10" name="feedback"> Message </textarea>
 <center> <button type="submit" class="btn btn-lg btn-block btn-danger" name="submit"> Submit</button> </center>
@@ -153,4 +205,5 @@ $result = $conn->query($sql);
 </div>
 </body>
 </html>
+
 
