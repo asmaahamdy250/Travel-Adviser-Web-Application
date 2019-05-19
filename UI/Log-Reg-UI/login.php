@@ -47,13 +47,14 @@ $sql1 = "SELECT Username,Password FROM user ";
 $result1 = $conn->query($sql1);
 $sql2 = "SELECT Username,Password FROM admin ";
 $result2 = $conn->query($sql2);
-if(isset($_POST["login"])){     
+if(isset($_POST["login"])){  
+$_SESSION['user']=  $_POST['username'];  
    while($row1=mysqli_fetch_assoc($result1)) {
         $username1 = $row1['Username'];
 		$password1 = $row1['Password'];
       if(($username1 == $_POST['username'] )&&($password1 == $_POST['pass'])){
 	  
-       header('Location:../Home Page/Home Page.html');
+       header('Location:../Home Page/Home View.php');
       } else{
 		  $_SESSION['message'] = "invalid username or password";
 	  }
@@ -91,12 +92,12 @@ if(isset($_POST["login"])){
 					<div class="alert alert-error"><?= $_SESSION['message'] ?></div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Username" required>
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="pass" placeholder="Password" required>
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
