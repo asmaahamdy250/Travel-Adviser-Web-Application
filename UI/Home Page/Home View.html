@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="header.css" type="text/css"/>
+		<base target="_top">
 <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,16 +23,18 @@ z-index: 1;
 }
 .card-img
 {
-	margin: 0;
+	margin-left: 40;
 	border: 1px solid transparent;
 	border-radius: 10px;
+	width: 40%;
 }
 
 /* Create two equal columns that floats next to each other */
 .column {
   float: left;
   width: 50%;
-  padding: 10px;
+  height:30%;
+  padding: 50px;
 }
 
 /* Clear floats after the columns */
@@ -60,7 +66,27 @@ font-size:14;
 </style>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		
+			<a class="navbar-brand" href="Home Page.html">TAWA</a>
+			<div class="collapse navbar-collapse nav-items" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			  <li class="nav-item">
+				<a class="nav-link links" href="../Log-Reg-UI/registration.php">Sign up <span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link links" href="../Log-Reg-UI/login.php">Login</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link links" href="../Asmaa/Reserved Trips.php">Reserved Trips</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link links" href="Home Page.php">logout</a>
+			  </li>
+			</ul>
+		
+			</div>
+			</nav>
 <div align="right" id="btnContainer">
   <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button> 
   <button class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</button>
@@ -72,10 +98,10 @@ font-size:14;
   <table cellspacing="20">
   <tr>
   <td>
-  <center>  <p class="section">SRI LANKA</p> </center>
-<img class="card-img" src="shangri-las.jpg" alt="Country" height="200" width="200" hspace="50">
+    <p margin-left="100px" class="section">SRI LANKA</p>
+<img class="card-img" src="shangri-las.jpg" alt="Country" height="100" width="150" hspace="50">
 </td>
-<td cellpadding="0">
+<td >
 </br>
 	</br>
 	</br>
@@ -90,11 +116,11 @@ font-size:14;
 	</table>
   </div>
   <div class="column" >
-  <table cellspacing="20">
+  <table cellspacing="10">
   <tr>
   <td>
   <center>  <p class="section">TURKEY</p> </center>
-<img class="card-img" src="Turkey.jpg" alt="Country" height="200" width="200" hspace="50">
+<img class="card-img" src="Turkey.jpg" alt="Country" height="100" width="150" hspace="50" >
     </td>
 	<td>
 	</br>
@@ -117,7 +143,7 @@ font-size:14;
   <tr>
   <td >
 <center>  <p class="section">MALYSIA</p> </center>
-<img class="card-img" src="malysia.jpg" alt="Country" height="200" width="200" hspace="50">
+<img class="card-img" src="malysia.jpg" alt="Country" height="100" width="150" hspace="50">
     </td>
 	<td >
 	</br>
@@ -137,7 +163,7 @@ font-size:14;
   <tr>
   <td>
   <center>  <p class="section">DUBAI</p> </center>
-<img class="card-img" src="palmislands1.jpg" alt="Country" height="200" width="200" hspace="50">
+<img class="card-img" src="palmislands1.jpg" alt="Country" height="100" width="150" hspace="50">
 </td>
 <td>
 </br>
