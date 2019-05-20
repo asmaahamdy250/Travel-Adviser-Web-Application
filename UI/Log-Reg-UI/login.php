@@ -34,7 +34,7 @@ $_SESSION['message'] = '';
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "tawa_db";
+$dbname = "tawa";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

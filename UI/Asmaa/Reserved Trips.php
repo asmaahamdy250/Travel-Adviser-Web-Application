@@ -12,7 +12,7 @@ $_SESSION['message'] = '';
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "tawa_db";
+$dbname = "tawa";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -22,11 +22,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql1="SELECT `FlightNumber`, `FlightType`, `LevelOfService`, `AirLines`, `Travel_Date`, `Travel_Destination` FROM `flight` ";
-$sql2="SELECT `NumberOfSeats`, `PaymentMethod` FROM `book` ";
-$result1 = $conn->query($sql1);
-$result2= $conn->query($sql2);
-				
+	
 	?>			
 
 <form >
@@ -43,6 +39,11 @@ $result2= $conn->query($sql2);
       </tr>
 	  
      <?php
+$sql1="SELECT `FlightNumber`, `FlightType`, `LevelOfService`, `AirLines`, `Travel_Date`, `Travel_Destination`,`NumberOfSeats`, `PaymentMethod`  FROM `flight ` f ,`book` b 
+where f.`FlightNumber`=b.`Flight_FlightNumber` and `User_Username`= '".$_SESSION['user']."'";
+
+$result1 = $conn->query($sql1);
+
 	 
 	 while($row1=mysqli_fetch_assoc($result1))
 				{
@@ -78,10 +79,6 @@ $result2= $conn->query($sql2);
 		 <label class="style"><?php echo $row1["LevelOfService"] ?></label>
          </td>		 
       </tr>
-	  <?php
-				while($row2 = $result2->fetch_assoc())
-				{
-				?>
 				
 	
 				 <tr>
@@ -89,7 +86,7 @@ $result2= $conn->query($sql2);
            <label class="style">Payment Method</label>
 	     </td>
          <td>
-	      <label class="style"><?php echo $row2['PaymentMethod']?></label>     
+	      <label class="style"><?php echo $row1['PaymentMethod']?></label>     
 		</td>		 
        </select>
 	  </tr>
@@ -99,17 +96,15 @@ $result2= $conn->query($sql2);
 		  <label class="style">Number of seats</label>
 	     </td>
          <td>
-           <label class="style"><?php echo $row2["NumberOfSeats"]?></label>
+           <label class="style"><?php echo $row1["NumberOfSeats"]?></label>
          </td>		 
       </tr>
 	  <?php
-	
-				}
-	 
+				}	
 	  ?>
-				<?php
-				}
-				?>
+				
+	  
+
 				
 	  <tr>
 		<td colspan="2"> <center>     

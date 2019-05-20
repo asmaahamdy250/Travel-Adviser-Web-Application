@@ -2,7 +2,7 @@
 session_start();
 $_SESSION['message'] = '';
 
-$mysqli = new mysqli('localhost', 'root', '', 'tawa_db');
+$mysqli = new mysqli('localhost', 'root', '', 'tawa');
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	//two passwords are equal to each other

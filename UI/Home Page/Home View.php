@@ -72,7 +72,7 @@ $_SESSION['message'] = '';
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "tawa_db";
+$dbname = "tawa";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -97,6 +97,10 @@ if(isset($_POST["turkey"])){
 	$_SESSION['same']=$_SESSION['user'];
 	header('location:../Home Page/Log-Reg-dest-UI/pages/turkey/main.php');
 }
+if(isset($_POST["reserved"])){
+	$_SESSION['same']=$_SESSION['user'];
+	header('location:../Asmaa/Reserved Trips.php');
+}
  ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		
@@ -107,14 +111,15 @@ if(isset($_POST["turkey"])){
 				<a class="nav-link links" href="../Log-Reg-UI/registration.php">Sign up <span class="sr-only">(current)</span></a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link links" href="../Log-Reg-UI/login.php"><h3 color="white"><?php echo $_SESSION['user'];?></h3></a>
+				<h3 class="nav-link links"><?php echo $_SESSION['user'];?></h3>
 			  </li>
+			  <form method="post" action="Home Page.php"> 
 			  <li class="nav-item">
-				<a class="nav-link links" href="../Asmaa/Reserved Trips.php">Reserved Trips</a>
+				<button class="nav-link links" type="submit" name="reserved">Reserved Trips</button>
+				
 			  </li>
-			  <li class="nav-item">
-				<a class="nav-link links" href="Home Page.php">logout</a>
-			  </li>
+			  </form>
+
 			</ul>
 		
 			</div>

@@ -3,7 +3,7 @@ session_start();
 $_SESSION['errormessage'] = '';
 $_SESSION['successmessage'] = '';
 
-$mysqli = new mysqli('localhost', 'root', '', 'tawa_db');
+$mysqli = new mysqli('localhost', 'root', '', 'tawa');
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	

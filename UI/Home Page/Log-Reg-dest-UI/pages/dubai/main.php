@@ -11,11 +11,11 @@
 session_start();
 if(isset($_POST["book"])){ 
 $_SESSION['user']=$_SESSION{'same'};
- header('Location:../Booking/Booking.php');
+ header('Location:../../../../Booking/Booking.php');
 }
 if(isset($_POST["feed"])){ 
 $_SESSION['user']=$_SESSION{'same'};
- header('Location:../Rating/Rating &Feedback.php');
+ header('Location:../../../../Rating/Rating &Feedback.php');
 }
 ?>
 <center>
@@ -137,10 +137,10 @@ After completion, Palm Jebel Ali will take a similar shape. Like Palm Jumeirah, 
     <a class="arrow arrow-next" href="#item-1"></a>
   </div>
   </div>
-	<form action="main.php" target="_top">
+	<form action="main.php" method="post">
 		<input class="btn btn-danger btm10" type="submit" name="book" value="Book Now" />
 	</form>
-	<form action="main.php" target="_top">
+	<form action="main.php" method="post">
 		<input class="btn btn-danger btm60" type="submit" name="feed" value="Write Feedback " />
 	</form>
 	<table border="0" id="footer">
