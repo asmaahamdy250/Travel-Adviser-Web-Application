@@ -22,6 +22,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
+
+
 	
 	?>			
 
@@ -39,7 +41,7 @@ if ($conn->connect_error) {
       </tr>
 	  
      <?php
-$sql1="SELECT `FlightNumber`, `FlightType`, `LevelOfService`, `AirLines`, `Travel_Date`, `Travel_Destination`,`NumberOfSeats`, `PaymentMethod`  FROM `flight ` f ,`book` b 
+$sql1="SELECT `FlightNumber`, `FlightType`, `LevelOfService`, `AirLines`, `Travel_Date`, `Travel_Destination`,`NumberOfSeats`, `PaymentMethod`  FROM `flight` f ,`book` b 
 where f.`FlightNumber`=b.`Flight_FlightNumber` and `User_Username`= '".$_SESSION['user']."'";
 
 $result1 = $conn->query($sql1);
@@ -99,7 +101,15 @@ $result1 = $conn->query($sql1);
            <label class="style"><?php echo $row1["NumberOfSeats"]?></label>
          </td>		 
       </tr>
+
 	  <?php
+	  	  if(isset($_POST['cancel'])){
+	$sql2 = "DELETE FROM `flight` WHERE FlightNumber='".$row1['FlightNumber']."'";
+	$result2 = $conn->query($sql2);
+	$sql3 = "DELETE FROM `book` WHERE FlightNumber='".$row1['FlightNumber']."'";
+	$result3 = $conn->query($sql3);
+	
+}
 				}	
 	  ?>
 				
@@ -107,8 +117,10 @@ $result1 = $conn->query($sql1);
 
 				
 	  <tr>
-		<td colspan="2"> <center>     
-			<input  class="btn btn-danger" type="button" value="Cancel The Trip" onclick="window.location.href='Cancel Trip.html'"></input>
+		<td colspan="2"> <center>   
+			<form method = "POST">
+				<input  class="btn btn-danger" type="submit" name="cancel" value="Cancel The Trip" />
+			</form>
 			<input class="btn btn-warning" type="button" value="Home" onclick="window.location.href='../Home Page/Home Page.html'" />
 		</td>
 	

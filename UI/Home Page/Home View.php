@@ -113,7 +113,7 @@ if(isset($_POST["reserved"])){
 			  <li class="nav-item">
 				<h3 class="nav-link links"><?php echo $_SESSION['user'];?></h3>
 			  </li>
-			  <form method="post" action="Home Page.php"> 
+			  <form method="post" action="Home View.php"> 
 			  <li class="nav-item">
 				<button class="nav-link links" type="submit" name="reserved">Reserved Trips</button>
 				
