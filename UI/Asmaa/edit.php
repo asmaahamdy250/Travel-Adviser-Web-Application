@@ -35,6 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		if($_POST['password'] == $_POST['cpassword'])
 		{
 			$sql = "UPDATE `user` SET `Password`='".$_POST['password']."',`FullName`='".$_POST['name']."',`Phone`='".$_POST['phone']."',`Email`='".$_POST['email']."',`confirmpassword`='".$_POST['cpassword']."' WHERE `Username`='".$_SESSION['user']."'";
+			
 			if($mysqli->query($sql) === true)
 			{
 				$_SESSION['successmessage'] = "Congratulations! this user has been updated successfully";
@@ -44,7 +45,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 			{
 				$_SESSION['errormessage'] = "The data entered were invalid, Please re-enter your data";
 			}
-			}
+			
+	    }
 
 		else
 		{
@@ -58,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+                    <form method="post">
                         </div>
                         <div class="input-group">
                             <input class="input--style-3" type="text" placeholder="Full Name" name="name">
@@ -89,8 +91,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         <div class="p-t-10">
                             <button class="btn btn--pill btn--green" type="button" style=" background-color: red;" onclick="window.location.href='admin.php'">Cancel</button>
 
-
+                           
                             <button class="btn btn--pill btn--green" type="submit" style="float: right;" onclick="window.location.href='updateSuccess.html'">Update</button>
+							
                         </div>
                     </form>
                 </div>
