@@ -43,20 +43,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 			}else
 			{
 				$_SESSION['errormessage'] = "The data entered were invalid, Please re-enter your data";
+			}
+			}
 
 		else
 		{
 			$_SESSION['errormessage'] = "The Password Not Matched";
 		}
-		}
+		
 		}		
 		
-}
+
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-@@ -120,24 +97,24 @@
 
                         </div>
                         <div class="input-group">
