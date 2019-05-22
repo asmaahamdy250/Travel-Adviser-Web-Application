@@ -68,6 +68,8 @@ font-size:14;
 <body>
 <?php
 session_start();
+if(isset($_SESSION['user']))
+{
 $_SESSION['message'] = '';
 $servername = "localhost";
 $username = "root";
@@ -100,6 +102,11 @@ if(isset($_POST["turkey"])){
 if(isset($_POST["reserved"])){
 	$_SESSION['same']=$_SESSION['user'];
 	header('location:../Asmaa/Reserved Trips.php');
+}
+}
+else
+{
+	header("Location:../Log-Reg-UI/login.php");
 }
  ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
