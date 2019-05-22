@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="header.css" type="text/css"/>
@@ -16,10 +17,9 @@ body{
 
 }
 .section  {
-font-size: 2rem;
+	font-size: 2rem;
 font-family: fantasy;;
-z-index: 1;
-location: left;  
+z-index: 1;  
 }
 .card-img
 {
@@ -32,7 +32,7 @@ location: left;
 /* Create two equal columns that floats next to each other */
 .column {
   float: left;
-  width: 40%;
+  width: 50%;
   height:30%;
   padding: 50px;
 }
@@ -62,29 +62,71 @@ location: left;
 }
 p{
 font-size:14;
-width: 160%	;
-position: center;
 }
 </style>
 </head>
 <body>
+<?php
+session_start();
+if(isset($_SESSION['user']))
+{
+$_SESSION['message'] = '';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tawa";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+if(isset($_POST["sirlanka"])){
+	$_SESSION['same']=$_SESSION['user'];
+	header('location:../Home Page/Log-Reg-dest-UI/pages/sriLanka/main.php');
+}
+if(isset($_POST["malysia"])){
+	$_SESSION['same']=$_SESSION['user'];
+	header('location:../Home Page/Log-Reg-dest-UI/pages/malaysia/main.php');
+}
+if(isset($_POST["dubai"])){
+	$_SESSION['same']=$_SESSION['user'];
+	header('location:../Home Page/Log-Reg-dest-UI/pages/dubai/main.php');
+}
+if(isset($_POST["turkey"])){
+	$_SESSION['same']=$_SESSION['user'];
+	header('location:../Home Page/Log-Reg-dest-UI/pages/turkey/main.php');
+}
+if(isset($_POST["reserved"])){
+	$_SESSION['same']=$_SESSION['user'];
+	header('location:../Asmaa/Reserved Trips.php');
+}
+}
+else
+{
+	header("Location:../Log-Reg-UI/login.php");
+}
+ ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		
-			<a class="navbar-brand" href="Home view.html">TAWA</a>
+			<a class="navbar-brand" href="Home View.php">TAWA</a>
 			<div class="collapse navbar-collapse nav-items" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 			  <li class="nav-item">
 				<a class="nav-link links" href="../Log-Reg-UI/registration.php">Sign up <span class="sr-only">(current)</span></a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link links" href="../Log-Reg-UI/login.php">Login</a>
+				<h3 class="nav-link links"><?php echo $_SESSION['user'];?></h3>
 			  </li>
+			  <form method="post" action="Home View.php"> 
 			  <li class="nav-item">
-				<a class="nav-link links" href="../Asmaa/Reserved Trips.php">Reserved Trips</a>
+				<button class="nav-link links" type="submit" name="reserved">Reserved Trips</button>
+				
 			  </li>
-			  <li class="nav-item">
-				<a class="nav-link links" href="Home Page.php">logout</a>
-			  </li>
+			  </form>
+
 			</ul>
 		
 			</div>
@@ -100,8 +142,8 @@ position: center;
   <table cellspacing="20">
   <tr>
   <td>
-    <p  class="section">SRI LANKA</p>
-<img class="card-img" src="shangri-las.jpg" alt="Country" style=" height: 150px; width: 200px;"   hspace="50">
+    <p margin-left="100px" class="section">SRI LANKA</p>
+<img class="card-img" src="shangri-las.jpg" alt="Country" height="100" width="150" hspace="50">
 </td>
 <td >
 </br>
@@ -111,7 +153,9 @@ position: center;
     <p>Where to go: Temple of the Tooth,Sigiriya,Yala National Park</p>
 	<p>Restaurants: The Lagoon, Nuga Gama, Ministry of Crab</p>
 	<p>Airlines: Egypt Air,Fly Emirates,Qatari Airways</p>
-	<input class="btn btn-lg btn-block btn-danger" type="button" value="Read More" onclick="window.location.href='../Home Page/Log-Reg-dest-UI/pages/sriLanka/sriLanka.html'" />
+	<form action="Home View.php" method="post">
+	<button class="btn btn-lg btn-block btn-danger" type="submit" name="sirlanka">readmore</button>
+	</form>
 	</td>
 	
 	</tr>
@@ -121,8 +165,8 @@ position: center;
   <table cellspacing="10">
   <tr>
   <td>
-    <p class="section">TURKEY</p> 
-<img class="card-img" src="Turkey.jpg" alt="Country" style=" height: 150px; width: 200px;"    hspace="50" >
+  <center>  <p class="section">TURKEY</p> </center>
+<img class="card-img" src="Turkey.jpg" alt="Country" height="100" width="150" hspace="50" >
     </td>
 	<td>
 	</br>
@@ -132,7 +176,9 @@ position: center;
     <p>Where to go: Istanbul,Pamukkale,Antalya</p>
 	<p>Restaurants: Istanbul Restaurants, Ankara Restaurants, Bursa Restaurants</p>
 	<p>Airlines: Egypt Air,Fly Emirates,Qatari Airways</p>
-	<input class="btn btn-lg btn-block btn-danger" type="button" value="Read More" onclick="window.location.href='../Home Page/Log-Reg-dest-UI/pages/Turkey/Turkey.html'" />
+	<form action="Home View.php" method="post">
+	<button class="btn btn-lg btn-block btn-danger" type="submit" name="turkey">readmore</button>
+	</form>
 	</td>
 	</tr>
 	</table>
@@ -144,8 +190,8 @@ position: center;
   <table cellspacing="20">
   <tr>
   <td >
- <div style = " location : 200px "><p class="section">MALYSIA</p></div>
-<img class="card-img" src="malysia.jpg" alt="Country" style=" height: 150px ; width: 200px;"     hspace="50">
+<center>  <p class="section">MALYSIA</p> </center>
+<img class="card-img" src="malysia.jpg" alt="Country" height="100" width="150" hspace="50">
     </td>
 	<td >
 	</br>
@@ -155,7 +201,9 @@ position: center;
     <p>Where to go: Kuala Lumpur,Penang,Langkawi</p>
 	<p>Restaurants: Johor Bahru Restaurants, NURMALAYSIA CAIRO,Penang Island Restaurants</p>
 	<p>Airlines: Egypt Air,Fly Emirates,Qatari Airways</p>
-	<input class="btn btn-lg btn-block btn-danger" type="button" value="Read More" onclick="window.location.href='../Home Page/Log-Reg-dest-UI/pages/malaysia/malaysia.html'" />
+	<form action="Home View.php" method="post">
+	<button class="btn btn-lg btn-block btn-danger" type="submit" name="malysia">readmore</button>
+	</form>
 	</td>
 	</tr>
 	</table>
@@ -164,8 +212,8 @@ position: center;
   <table cellspacing="20">
   <tr>
   <td>
-   <p hspace="50" class="section">DUBAI</p>
-   <img class="card-img" src="palmislands1.jpg" alt="Country" style=" height: 150px; width: 200px;"  hspace="50">
+  <center>  <p class="section">DUBAI</p> </center>
+<img class="card-img" src="palmislands1.jpg" alt="Country" height="100" width="150" hspace="50">
 </td>
 <td>
 </br>
@@ -175,7 +223,9 @@ position: center;
  <p>Where to go: Dubai Marina,Burj Khalifa,Burj Al Arab Jumeirah</p>
 	<p>Restaurants: Dubai House,Maiden Shanghai,Ahlan First Class Lounge</p>
 	<p>Airlines: Egypt Air,Fly Emirates,Qatari Airways</p>
-	<input class="btn btn-lg btn-block btn-danger" type="button" value="Read More" onclick="window.location.href='../Home Page/Log-Reg-dest-UI/pages/dubai/Dubai.html'" />
+	<form action="Home View.php" method="post">
+	<button class="btn btn-lg btn-block btn-danger" type="submit" name="dubai">readmore</button>
+	</form>
 	</td>
 	</tr>
 	</table>

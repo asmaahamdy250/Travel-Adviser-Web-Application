@@ -3,13 +3,11 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "tawa_db";
+$dbname = "tawa";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-if (isset($_POST['edit'])){
-	header("location:edit.php");
-}
+
 		
 ?>
 <!DOCTYPE html>
@@ -64,12 +62,19 @@ if (isset($_POST['edit'])){
 			
 			if (isset($_POST['search'])){
 				$_SESSION['user']= $_POST['uname'];
+	           			
 				$sql1 = "SELECT `Username` FROM `user` WHERE Username='".$_POST['uname']."'";
 				$res1 = $conn->query($sql1);
 				while($row1 = $res1->fetch_assoc()){
 					echo "<li name = 'name' style='font-size:25px;'> $row1[Username]"."</li>"."<br> <br>";
 				}
+			
 			}
+			if (isset($_POST['edit'])){
+				
+				header("location:edit.php");
+				
+				}
 			if(isset($_POST['delete'])){
 				$sql2 = "DELETE FROM `user` WHERE Username='".$_SESSION['user']."'";
 				$res2 = $conn->query($sql2);

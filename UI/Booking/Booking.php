@@ -11,7 +11,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "tawa_db";
+$dbname = "tawa";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -20,14 +20,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-$sql1 = "SELECT Username FROM user ";
- $result1 = $conn->query($sql1);
+
+
 if(isset($_POST["Book"])){     
-   while($row1=mysqli_fetch_assoc($result1)) {
-       if( $username = $row1['Username'])
-	   {
+
 		   $sql2 = "INSERT INTO `book`(`User_Username`, `Flight_FlightNumber`, `NumberOfSeats`, `PaymentMethod`) 
-		   values('".$_POST['username']."','".$_POST['FN']."','".$_POST['seats']."','".$_POST['payment']."')";
+		   values('".$_SESSION['user']."','".$_POST['FN']."','".$_POST['seats']."','".$_POST['payment']."')";
            $sql3="INSERT INTO `flight`(`FlightNumber`, `FlightType`, `LevelOfService`, `AirLines`, `Travel_Date`, `Travel_Destination`) 
 		   VALUES ('".$_POST['FN']."','".$_POST['Type']."','".$_POST['LOS']."','".$_POST['airline']."','".$_POST['Date']."','".$_POST['Destination']."')";
 
@@ -35,12 +33,12 @@ if(isset($_POST["Book"])){
 			$result2 = $conn->query($sql2);
 			$result3 = $conn->query($sql3);
 			header('Location:../Booking/Thanks for booking.html');
-		   
-	   }
+	   
+	   
 		
      
     
-}
+
 }
 
 ?>
@@ -57,15 +55,7 @@ if(isset($_POST["Book"])){
 	       <center><p>Booking Form!</p></center>	       
 	     </td>	
       </tr>
-	  <tr>
-         <td>
-		  <label class="style">USERNAME</label>
-	     </td>
-         <td class="input">
-           <input type="text" name="username" min="1" max="14" required>
-         </td>		 
-      </tr>
-	  
+	
       <tr>
          <td>
 		  <label class="style">Number of seats</label>
