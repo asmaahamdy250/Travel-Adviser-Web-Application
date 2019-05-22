@@ -7,11 +7,12 @@ $mysqli = new mysqli('localhost', 'root', '', 'tawa');
 		
         
         $sql = "SELECT * FROM `user` WHERE `Username`='".$_SESSION['user']."'";
+
 		$result = $mysqli->query($sql);
 		while($row = $result->fetch_assoc())
 		{
 			
-			
+
 				$_SESSION['password'] = $row['Password'];
 			
 				$_SESSION['fname'] = $row['FullName'];
@@ -26,8 +27,7 @@ $mysqli = new mysqli('localhost', 'root', '', 'tawa');
 				$_SESSION['cpassword']= $row['confirmpassword'];
 			
 		}
-		//$sql = "INSERT INTO `user`(`Username`, `Password`, `FullName`, `Phone`, `Email`, `confirmpassword`) VALUES ('$username','$password','$fullname','$phone','$email','$confirmPassword')";
-		//two passwords are equal to each other
+
 		
 		
 if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -40,6 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 			{
 				$_SESSION['successmessage'] = "Congratulations! this user has been updated successfully";
 				//header("location: admin.php");
+
 				
 			}else
 			{
@@ -57,6 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 		
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,6 +70,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         </div>
                         <div class="input-group">
                             <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" name="uname">
+
                             <input class="input--style-3 js-datepicker" type="text" placeholder="User Name" value="<?php echo $_SESSION['user']; ?>" name="uname">
                             <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                         </div>
@@ -86,6 +89,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         </div>
 						<div class="input-group">
                             <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword">
+
                             <input class="input--style-3" type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_SESSION['cpassword']; ?>">
                         </div>
                         <div class="p-t-10">
