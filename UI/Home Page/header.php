@@ -15,13 +15,13 @@
 				<a class="nav-link links" href="../Log-Reg-UI/registration.php">Sign up <span class="sr-only">(current)</span></a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link links" href="../Log-Reg-UI/login.php"><?php?></a>
+				<label color="white"><?php echo $_SESSION['user'];?></label>
 			  </li>
 			  <li class="nav-item">
 				<a class="nav-link links" href="../Asmaa/Reserved Trips.php">Reserved Trips</a>
 			  </li>
 			  <li class="nav-item">
-				<a class="nav-link links" href="Home Page.php">logout</a>
+				<a class="nav-link links" href="../Log-Reg-UI/login.php">logout</a>
 			  </li>
 			</ul>
 		

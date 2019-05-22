@@ -36,7 +36,8 @@ if ($conn->connect_error) {
    
      <tr>
          <td colspan="2">
-	       <center><p>Your Reserved Trips</p></center>	       
+	       <center><p>Your Reserved Trips</p></center>	
+		   
 	     </td>	
       </tr>
 	  
@@ -51,12 +52,17 @@ $result1 = $conn->query($sql1);
 				{
 					?>
 				
+				
 				 <tr>
+				 
          <td>
-           <label class="style">Flight Type</label>
+		 
+		 <br>
+		 
+           <label class="style" > <span style="color:#dc3545;">Flight #<?php echo $x++;?> </span><br><br>Flight Type </label>
 	     </td>
          <td>
-           <label class="style"><?php echo $row1['FlightType'] ?></label>
+           <label class="style"><br><br><br><?php echo $row1['FlightType'] ?></label>
 
          </td>		 
       </tr>
@@ -81,6 +87,7 @@ $result1 = $conn->query($sql1);
 		 <label class="style"><?php echo $row1["LevelOfService"] ?></label>
          </td>		 
       </tr>
+
 				
 	
 				 <tr>
@@ -112,10 +119,7 @@ $result1 = $conn->query($sql1);
 }
 				}	
 	  ?>
-				
-	  
 
-				
 	  <tr>
 		<td colspan="2"> <center>   
 			<form method = "POST">
@@ -125,6 +129,12 @@ $result1 = $conn->query($sql1);
 		</td>
 	
 	  </tr>
+				<?php
+				
+				}
+				?>
+				
+	  
 	  </table>
 
 				
