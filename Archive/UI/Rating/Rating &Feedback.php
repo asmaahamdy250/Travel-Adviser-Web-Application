@@ -15,6 +15,9 @@
       <link rel="stylesheet" href="css/style.css">
 
 <style>
+
+
+
 body
 {
 background-image:url('download.jfif');
@@ -103,32 +106,6 @@ font-family:
    position: absolute;
 }
 </style>
-</head>
-<body>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tawa";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-if(isset($_POST['submit']))
-{
-$sql = "INSERT INTO `feedback` (`Comment`,`ID`) values('".$_POST['feedback']."','".uniqid()."')";
-$result = $conn->query($sql);
-
-  header('Location:Feedback Thanks.html');
-  
-  
-}
-?>
-<?php
-echo"
 <script>
 $(document).ready(function(){
   
@@ -155,7 +132,8 @@ $(document).ready(function(){
   var ratingValue;
   /* 2. Action to perform on click */
   $('#stars li').on('click', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var onStar = parseInt($(this).data('value'), 10); // The star currently 
+	
     var stars = $(this).parent().children('li.star');
     
     for (i = 0; i < stars.length; i++) {
@@ -168,9 +146,15 @@ $(document).ready(function(){
     
     // JUST RESPONSE (Not needed)
     ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+	
     var msg = '';
     if (ratingValue > 1) {
         msg = 'Thanks! You rated this ' + ratingValue + ' stars.';
+		
+		
+		
+		
+		
     }
     else {
         msg = 'We will improve ourselves. You rated this ' + ratingValue + ' stars.';
@@ -187,12 +171,34 @@ function responseMessage(msg) {
   $('.success-box').fadeIn(200);  
   $('.success-box div.text-message').html('<span>' + msg + '</span>');
 }
-
+$('hide').attr('value', ''+ratingValue+"");
 </script>
+</head>
+<body>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tawa";
 
-";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 
+if(isset($_POST['submit']))
+{
+$sql = "INSERT INTO `feedback` (`Comment`,`ID`,`NumberOfStars`) values('".$_POST['feedback']."','".uniqid()."','".$_POST['hide']."')";
+$result = $conn->query($sql);
+
+  header('Location:Feedback Thanks.html');
+  
+  
+}
 ?>
+
 
 
 
@@ -240,6 +246,8 @@ function responseMessage(msg) {
       </li>
     </ul>
   </div>
+  <input type="hidden" name="hide" value="">
+  <h1 color="white"><p name="kk"></p></h1>
   
   <div class='success-box'>
     

@@ -5,7 +5,7 @@ $_SESSION['successmessage'] = '';
 
 $mysqli = new mysqli('localhost', 'root', '', 'tawa');
 		
-
+        
         $sql = "SELECT * FROM `user` WHERE `Username`='".$_SESSION['user']."'";
 
 		$result = $mysqli->query($sql);
