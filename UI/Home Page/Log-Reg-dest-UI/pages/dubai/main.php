@@ -8,14 +8,36 @@
 </head>
 <body>
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tawa";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 session_start();
 if(isset($_POST["book"])){ 
 $_SESSION['user']=$_SESSION{'same'};
+
  header('Location:../../../../Booking/Booking.php');
 }
 if(isset($_POST["feed"])){ 
 $_SESSION['user']=$_SESSION{'same'};
- header('Location:../../../../Rating/Rating &Feedback.php');
+$_SESSION['destination']="dubai";
+ header('Location:../../../../Rating/Rating%20&Feedback.php');
+}
+$sql1="SELECT `Comment` ,`Travel_Destination` FROM `feedback` f ,`has` h
+where h.`FeedBack_ID`=f.`ID` and `Travel_Destination`= 'dubai'";
+
+$result1 = $conn->query($sql1);
+while($row1=mysqli_fetch_assoc($result1)) {
+	?>
+	<h1><?php echo $row1['Comment'];?></h1>
+	<?php
 }
 ?>
 <center>

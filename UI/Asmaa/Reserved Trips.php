@@ -21,7 +21,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-
+$x=1;
 
 
 	
@@ -47,7 +47,7 @@ where f.`FlightNumber`=b.`Flight_FlightNumber` and `User_Username`= '".$_SESSION
 
 $result1 = $conn->query($sql1);
 
-	 
+	 $x=1;
 	 while($row1=mysqli_fetch_assoc($result1))
 				{
 					?>
@@ -109,11 +109,11 @@ $result1 = $conn->query($sql1);
          </td>		 
       </tr>
 
-	  <?php
+	 <?php
 	  	  if(isset($_POST['cancel'])){
 	$sql2 = "DELETE FROM `flight` WHERE FlightNumber='".$row1['FlightNumber']."'";
 	$result2 = $conn->query($sql2);
-	$sql3 = "DELETE FROM `book` WHERE FlightNumber='".$row1['FlightNumber']."'";
+	$sql3 = "DELETE FROM `book` WHERE Flight_FlightNumber='".$row1['Flight_FlightNumber']."'";
 	$result3 = $conn->query($sql3);
 	
 }
@@ -129,11 +129,7 @@ $result1 = $conn->query($sql1);
 		</td>
 	
 	  </tr>
-				<?php
-				
-				}
-				?>
-				
+			
 	  
 	  </table>
 
