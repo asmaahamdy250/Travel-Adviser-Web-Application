@@ -20,8 +20,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 <body>
 <nav style="height: 50px; background-color: white; font-family:fantasy; font-size:30px; position: fixed; width: 100%;"> TAWA
-
-<button style="float:right; margin-right: 30px;" class="button">Logout</button>
+<form method="post">
+<button type="submit" style="float:right; margin-right: 30px;" class="button" name="logout">Logout</button>
+</form>
 </nav>
 
 
@@ -40,10 +41,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 	<button type="submit" name = "search" value = "Search" class="button" style="display: inline; padding:5px;"  >
 		<img src='img/icons/search.png' style='width: 20px; height: 17px;' />  Search
 	</button>
-	<button type='submit' name = 'edit' class='button' style='display: inline; padding:4px;margin-top:5px;"'onclick="window.location.href='registration.html'">
+	<button type='submit' name = 'edit' class='button' style='display: inline; padding:4px;margin-top:5px;"'>
          <img src='img/icons/edit.png' style='width: 20px; height: 17px;' />  Edit
     </button>
-	<button type = 'submit' class='button' name='delete' style='display:inline;padding:4px;' onclick=''>
+	<button type = 'submit' class='button' name='delete' style='display:inline;padding:4px;' >
         <img src='img/icons/trash.png' style='width: 20px; height: 17px;' />  Delete
     </button>
     <br> <br> <br>
@@ -69,9 +70,15 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 					echo "<li name = 'name' style='font-size:25px;'> $row1[Username]"."</li>"."<br> <br>";
 				}
 			
+			
 			}
-			if (isset($_POST['edit'])){
+			if (isset($_POST['logout'])){
+			
+				header("location:../Log-Reg-UI/login.php");
 				
+				}
+			if (isset($_POST['edit'])){
+			
 				header("location:edit.php");
 				
 				}
@@ -82,7 +89,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 					header("location:admin.php");
 				}
 			}
-				
 		?>
     </ul>
 	</form>

@@ -107,6 +107,7 @@ font-family:
 }
 </style>
 <script>
+var ratingValue;
 $(document).ready(function(){
   
   /* 1. Visualizing things on Hover - See next part for action on click */
@@ -129,7 +130,7 @@ $(document).ready(function(){
     });
   });
   
-  var ratingValue;
+  
   /* 2. Action to perform on click */
   $('#stars li').on('click', function(){
     var onStar = parseInt($(this).data('value'), 10); // The star currently 
@@ -146,6 +147,7 @@ $(document).ready(function(){
     
     // JUST RESPONSE (Not needed)
     ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+	$("#hidee").val(""+ratingValue);
 	
     var msg = '';
     if (ratingValue > 1) {
@@ -171,11 +173,12 @@ function responseMessage(msg) {
   $('.success-box').fadeIn(200);  
   $('.success-box div.text-message').html('<span>' + msg + '</span>');
 }
-$('hide').attr('value', ''+ratingValue+"");
+
 </script>
 </head>
 <body>
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -190,8 +193,23 @@ if ($conn->connect_error) {
 
 if(isset($_POST['submit']))
 {
-$sql = "INSERT INTO `feedback` (`Comment`,`ID`,`NumberOfStars`) values('".$_POST['feedback']."','".uniqid()."','".$_POST['hide']."')";
-$result = $conn->query($sql);
+	$comment=$_POST['feedback'];
+	$num=$_POST['hide'];
+$sql1 = "INSERT INTO `feedback` (`Comment`,`NumberOfStars`) values('".$_POST['feedback']."','".$_POST['hide']."')";
+$result1 = $conn->query($sql1);
+
+$sql2="select ID from `feedback` where Comment='$comment' and NumberOfStars='$num' ;";
+$result2 = $conn->query($sql2);
+if($result2){
+	if(mysqli_num_rows($result2)>0){
+		while($row =mysqli_fetch_assoc($result2)){
+			$id=$row['ID'];
+		}
+	}
+}
+
+$sql3 = "INSERT INTO `has`( `Travel_Destination`,`FeedBack_ID`) VALUES ('".$_SESSION['destination']."','$id')";
+$result3 = $conn->query($sql3);
 
   header('Location:Feedback Thanks.html');
   
@@ -246,8 +264,9 @@ $result = $conn->query($sql);
       </li>
     </ul>
   </div>
-  <input type="hidden" name="hide" value="">
-  <h1 color="white"><p name="kk"></p></h1>
+
+  <input type="hidden" name="hide" id="hidee" value="">
+
   
   <div class='success-box'>
     
